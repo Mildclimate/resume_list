@@ -1,0 +1,146 @@
+% !TEX program = xelatex
+\documentclass[11pt]{article}
+
+\renewcommand{\baselinestretch}{1.15}
+
+% ============ 页面边距 ============
+\usepackage[letterpaper, margin=0.6in]{geometry}
+
+% ============ 颜色系统 ============
+\usepackage{xcolor}
+\definecolor{nameColor}{RGB}{26, 42, 58}       % 深空蓝（姓名）
+\definecolor{sectionColor}{RGB}{44, 62, 107}   % 深海蓝（章节标题）
+\definecolor{accentColor}{RGB}{58, 110, 165}   % 科技蓝（链接/高亮）
+\definecolor{dateColor}{RGB}{74, 90, 106}      % 铁灰（日期/次要信息）
+\definecolor{bodyColor}{RGB}{45, 45, 45}       % 深灰（正文）
+\definecolor{lightGray}{RGB}{208, 215, 224}    % 浅灰（分割线）
+
+% ============ 字体配置 ============
+\usepackage{fontspec}
+\usepackage{xeCJK}
+
+% 全部使用 PingFang SC（中文 + 英文 + 数字）
+\setmainfont{PingFang SC}[
+    UprightFont = *-Regular,
+    BoldFont = *-Semibold,
+    ItalicFont = *-Regular,
+]
+
+% 中文同样使用 PingFang SC
+\setCJKmainfont{PingFang SC}[
+    UprightFont = *-Regular,
+    BoldFont = *-Semibold,
+]
+
+% 等宽字体（代码、URL 等）也统一用 PingFang SC
+\setmonofont{PingFang SC}[
+    UprightFont = *-Regular,
+    BoldFont = *-Semibold,
+]
+
+% ============ 间距与格式 ============
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\usepackage{enumitem}
+\setlist{nosep, left=0pt, itemsep=2pt, label=\textbullet}
+\usepackage{url}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,        % 用颜色代替边框
+    linkcolor=accentColor,
+    urlcolor=accentColor,    % 链接用科技蓝
+    citecolor=dateColor,
+}
+
+% ============ 自定义命令 ============
+\newcommand{\sectionheader}[1]{%
+    \vspace{10pt}%
+    \noindent\textcolor{sectionColor}{\textbf{\Large #1}}%
+    \vspace{2pt}%
+    \hrulefill
+    \vspace{6pt}%
+}
+
+\newcommand{\entry}[5]{%
+    \noindent\textcolor{nameColor}{\textbf{#1}} \hfill \textcolor{dateColor}{\textit{#2}} \\
+    \textcolor{dateColor}{\textit{#3}} \hfill \textcolor{dateColor}{\textit{#4}} \\
+    \textcolor{bodyColor}{#5}%
+    \vspace{6pt}%
+}
+
+% ============ 页眉禁用 ============
+\usepackage{fancyhdr}
+\pagestyle{empty}
+
+% ============ 文档开始 ============
+\begin{document}
+
+% ------------- 个人信息 -------------
+\begin{center}
+    {\huge \textcolor{nameColor}{\textbf{谢搏珩}}} \\[6pt]
+    \colorbox{dateColor!15}{%
+        \textcolor{dateColor}{
+            \href{mailto:2094930710@qq.com}{2094930710@qq.com} \quad | \quad
+            +86 19116391912 \quad | \quad
+            \href{https://github.com/mildclimate}{GitHub: Mildclimate}
+        }%
+    } \\[2pt]
+    \textcolor{accentColor}{\textbf{求职: AI端侧部署 / 前端开发}}
+
+\end{center}
+
+% ------------- 教育经历 -------------
+\sectionheader{教育经历}
+
+\entry{天津大学}{2021.09 -- 2025.06}
+    {动画专业 · 学士}{天津}
+    {主修：动画运动规律、视听语言、动画分镜设计、三维动画制作}
+
+% ------------- 工作经历 -------------
+\sectionheader{工作经历}
+
+\entry{好未来}{2025.07 -- 2025.12}
+{前端开发工程师（学而思培优 · 增长方向）}{北京}
+    {• 主导低代码平台研发与增长活动落地，构建可视化页面搭建工具，支撑业务老师高效配置营销活动与内部运营场景，覆盖B端配置与C端展示全链路。 \\
+     • 负责学而思App内“背单词”H5应用开发，处理复杂跨端兼容与性能优化，集成动画引擎与音频能力，实现本地资源包管理，保障高并发活动场景下的流畅体验。 \\
+     • 深度参与需求评审与技术方案设计，打通客户端与前端协作链路，推动增长工具与教学场景的融合，有效提升活动迭代效率与用户体验。}
+
+\entry{魔门塔}{2024.07 -- 2025.01}
+    {前端开发实习生（工程稳定组 ES）}{苏州}
+    {• 负责内部代码合规扫描平台的前端研发，为研发工程师提供代码合规检测、结果可视化与一键修复指引。 \\
+     • 基于 WebSocket 实现扫描任务状态实时推送与结果增量展示，支持 10 万级 QPS 数据刷新，保障大规模代码库扫描场景下的交互流畅度。 \\
+     • 与后端算法团队紧密配合，设计扫描规则配置界面与触发机制，将算法扫描结果结构化渲染为可筛选、可追溯的合规报告，有效降低人工审查成本。}
+
+% ------------- 项目经历 -------------
+\sectionheader{项目经历}
+
+\entry{视觉重建3D App (React Native + Expo + TF.js)}{}
+    {个人项目 \href{https://github.com/Mildclimate/ToonCam}{[  https://github.com/Mildclimate/ToonCam   ]}}{}
+    {• 基于 TensorFlow.js 实现手机摄像头视频流的实时语义分割与3D场景重建。 \\
+     • 集成 Three.js 渲染引擎，实现真实视频与抽象3D模型的上下分屏实时同步显示。 \\
+     • 攻克 iPhone 端推理内存瓶颈，利用 tf.tidy() 与 requestAnimationFrame 循环实现稳定运行。}
+
+% \entry{端侧推理框架性能对比工具}{}
+%     {个人项目}{}
+%     {• 开发跨平台性能测试工具，对比 TFLite / NCNN / MNN 在移动端的推理延迟与功耗。 \\
+%      • 使用 Python 自动化收集数据，生成可视化报告，为技术选型提供依据。}
+
+% ------------- 专业技能 -------------
+% \sectionheader{专业技能}
+% \begin{itemize}
+%     \item \textcolor{nameColor}{\textbf{编程语言：}} \textcolor{bodyColor}{JavaScript / TypeScript，Python，C++（基础阅读与调试）}
+%     \item \textcolor{nameColor}{\textbf{移动端 \& 前端：}} \textcolor{bodyColor}{React Native，Expo，React}
+%     \item \textcolor{nameColor}{\textbf{AI / 端侧推理：}} \textcolor{bodyColor}{TensorFlow.js，TensorFlow Lite，WebGL 后端，模型量化与压缩}
+%     \item \textcolor{nameColor}{\textbf{图形学：}} \textcolor{bodyColor}{Three.js，WebGL，3D场景构建与渲染管线基础}
+%     \item \textcolor{nameColor}{\textbf{其他：}} \textcolor{bodyColor}{Git，Xcode，Android Studio，Metro}
+% \end{itemize}
+
+% ------------- 其他 -------------
+\sectionheader{其他}
+\begin{itemize}
+    \item \textcolor{bodyColor}{开源贡献：为字节可视化库 \texttt{VChart} 提交代码贡献，有参与开源社区协作经验。\href{https://github.com/VisActor/VChart/pull/3787}{[ PR-3787 ]}}
+    \item \textcolor{bodyColor}{AI辅助开发：深度使用 Copilot + DeepSeek V4 Pro 进行日常编码，日均 Token 消耗约 1 亿左右。}
+    \item \textcolor{bodyColor}{艺术背景：动画专业出身，具备扎实的美术功底与视觉审美能力（高考美术综合分 260/300，色彩单科 96/100）。}
+\end{itemize}
+
+\end{document}

@@ -1,0 +1,122 @@
+% !TEX program = xelatex
+\documentclass[11pt]{article}
+
+% ============ 页面边距 ============
+\usepackage[letterpaper, margin=0.6in]{geometry}
+
+% ============ 颜色系统 ============
+\usepackage{xcolor}
+\definecolor{nameColor}{RGB}{26, 42, 58}       % 深空蓝（姓名）
+\definecolor{sectionColor}{RGB}{44, 62, 107}   % 深海蓝（章节标题）
+\definecolor{accentColor}{RGB}{58, 110, 165}   % 科技蓝（链接/高亮）
+\definecolor{dateColor}{RGB}{74, 90, 106}      % 铁灰（日期/次要信息）
+\definecolor{bodyColor}{RGB}{45, 45, 45}       % 深灰（正文）
+\definecolor{lightGray}{RGB}{208, 215, 224}    % 浅灰（分割线）
+
+% ============ 字体配置 ============
+\usepackage{fontspec}
+\usepackage{xeCJK}
+
+% 英文：Source Code Pro（自动匹配系统里存在的变体）
+\setmainfont{Source Code Pro}
+
+% 中文：PingFang SC
+\setCJKmainfont{PingFang SC}
+
+% 等宽字体
+\setmonofont{Source Code Pro}
+
+% ============ 间距与格式 ============
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\usepackage{enumitem}
+\setlist{nosep, left=0pt, itemsep=2pt, label=\textbullet}
+\usepackage{url}
+\usepackage{hyperref}
+
+% ============ 自定义命令 ============
+\newcommand{\sectionheader}[1]{%
+    \vspace{10pt}%
+    \noindent\textcolor{sectionColor}{\textbf{\Large #1}}%
+    \vspace{2pt}%
+    \hrulefill
+    \vspace{6pt}%
+}
+
+\newcommand{\entry}[5]{%
+    \noindent\textcolor{nameColor}{\textbf{#1}} \hfill \textcolor{dateColor}{\textit{#2}} \\
+    \textcolor{dateColor}{\textit{#3}} \hfill \textcolor{dateColor}{\textit{#4}} \\
+    \textcolor{bodyColor}{#5}%
+    \vspace{6pt}%
+}
+
+% ============ 页眉禁用 ============
+\usepackage{fancyhdr}
+\pagestyle{empty}
+
+% ============ 文档开始 ============
+\begin{document}
+
+% ------------- 个人信息 -------------
+\begin{center}
+    {\Huge \textcolor{nameColor}{\textbf{张 某}}} \\[6pt]
+    \textcolor{dateColor}{
+        \href{mailto:zhangmou@email.com}{zhangmou@email.com} \quad | \quad
+        +86 138 0000 0000 \quad | \quad
+        \href{https://github.com/zhangmou}{GitHub: zhangmou}
+    } \\[2pt]
+    \textcolor{accentColor}{\textbf{端侧AI部署工程师 · 北京}}
+\end{center}
+
+% ------------- 教育经历 -------------
+\sectionheader{教育经历}
+\entry{北京大学}{2016.09 -- 2020.06}
+    {计算机科学与技术 · 学士}{北京}
+    {主修：计算机组成原理、操作系统、数据结构与算法、机器学习}
+
+% ------------- 工作经历 -------------
+\sectionheader{工作经历}
+
+\entry{某互联网科技公司}{2022.07 -- 至今}
+    {高级前端 / AI应用工程师}{北京}
+    {• 主导 React Native + TensorFlow.js 端侧AI应用架构设计，实现视频流实时视觉重建与3D渲染交互。 \\
+     • 优化移动端内存管理，通过张量生命周期控制和帧率降采样，解决OOM崩溃问题，推理帧率稳定在30fps。 \\
+     • 设计并实现模型动态加载方案，将安装包体积压缩至原体积的30\%，用户下载耗时降低60\%。}
+
+\entry{某创业公司}{2020.07 -- 2022.06}
+    {前端开发工程师}{上海}
+    {• 负责公司核心产品 Web 端与 React Native App 开发。 \\
+     • 实现基于 WebSocket 的实时数据看板，支持10万级QPS数据刷新。}
+
+% ------------- 项目经历 -------------
+\sectionheader{项目经历}
+
+\entry{视觉重建3D App (React Native + Expo + TF.js)}{2025.12 -- 2026.06}
+    {个人项目 \quad | \quad 已上架App Store \& Google Play}{}
+    {• 基于 TensorFlow.js 实现手机摄像头视频流的实时语义分割与3D场景重建。 \\
+     • 集成 Three.js 渲染引擎，实现真实视频与抽象3D模型的上下分屏实时同步显示。 \\
+     • 攻克 iPhone 端推理内存瓶颈，利用 tf.tidy() 与 requestAnimationFrame 循环实现稳定运行。}
+
+\entry{端侧推理框架性能对比工具}{2025.08 -- 2025.11}
+    {个人项目}{}
+    {• 开发跨平台性能测试工具，对比 TFLite / NCNN / MNN 在移动端的推理延迟与功耗。 \\
+     • 使用 Python 自动化收集数据，生成可视化报告，为技术选型提供依据。}
+
+% ------------- 专业技能 -------------
+\sectionheader{专业技能}
+\begin{itemize}
+    \item \textcolor{nameColor}{\textbf{编程语言：}} \textcolor{bodyColor}{JavaScript / TypeScript，Python，C++（基础阅读与调试）}
+    \item \textcolor{nameColor}{\textbf{移动端 \& 前端：}} \textcolor{bodyColor}{React Native，Expo，React}
+    \item \textcolor{nameColor}{\textbf{AI / 端侧推理：}} \textcolor{bodyColor}{TensorFlow.js，TensorFlow Lite，WebGL 后端，模型量化与压缩}
+    \item \textcolor{nameColor}{\textbf{图形学：}} \textcolor{bodyColor}{Three.js，WebGL，3D场景构建与渲染管线基础}
+    \item \textcolor{nameColor}{\textbf{其他：}} \textcolor{bodyColor}{Git，Xcode，Android Studio，Metro}
+\end{itemize}
+
+% ------------- 其他 -------------
+\sectionheader{其他}
+\begin{itemize}
+    \item \textcolor{bodyColor}{2024年 公司年度技术创新奖（端侧AI落地项目）}
+    \item \textcolor{bodyColor}{持有软件设计师中级证书}
+\end{itemize}
+
+\end{document}

@@ -1,0 +1,6 @@
+{   
+    // 如果你不需要自动格式化，也可以直接关闭保存时格式化
+    "[latex]": {
+        "editor.formatOnSave": false
+    }
+}
